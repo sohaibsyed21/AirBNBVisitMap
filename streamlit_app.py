@@ -35,13 +35,15 @@ dataframe["Location"] = dataframe["Location"].replace(
 # Display dataframe and text
 st.dataframe(dataframe)
 st.markdown("Below is a map showing all the Airbnb listings with a red dot and the location we've chosen with a blue dot.")
-
+colors=np.ones(1513,dtype='object')
+colors[0]="red"
+colors[1:]="blue"
 # Create the plotly express figure
 fig = px.scatter_mapbox(
     dataframe,
     lat="Latitude",
     lon="Longitude",
-    color="Location",
+    color=colors.tolist(),
     zoom=11,
     height=500,
     width=800,
