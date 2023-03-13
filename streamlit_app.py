@@ -1,7 +1,6 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-import numpy as np
 
 # Display title and text
 st.title("Week 1 - Data and visualization")
@@ -36,21 +35,19 @@ dataframe["Location"] = dataframe["Location"].replace(
 # Display dataframe and text
 st.dataframe(dataframe)
 st.markdown("Below is a map showing all the Airbnb listings with a red dot and the location we've chosen with a blue dot.")
-colors=np.ones(1513,dtype='object')
-colors[0]="red"
-colors[1:]="blue"
+
 # Create the plotly express figure
 fig = px.scatter_mapbox(
     dataframe,
     lat="Latitude",
     lon="Longitude",
-    color=colors.tolist(),
+    color="Location",
     zoom=11,
     height=500,
     width=800,
     hover_name="Price",
     hover_data=["Meters from chosen location", "Location"],
-
+    labels={"color": "gender"},
 )
 fig.update_geos(center=dict(lat=dataframe.iloc[0][2], lon=dataframe.iloc[0][3]))
 fig.update_layout(mapbox_style="stamen-terrain")
