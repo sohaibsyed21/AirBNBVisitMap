@@ -47,7 +47,9 @@ fig = px.scatter_mapbox(
     width=800,
     hover_name="Price",
     hover_data=["Meters from chosen location", "Location"],
-    labels={ "To visit": "red", "Airbnb listing":"blue"},
+    labels={"color": "Locations"},
+    color_discrete_map= {"To visit":"red", "Airbnb listing":"blue"}
+)
 )
 fig.update_geos(center=dict(lat=dataframe.iloc[0][2], lon=dataframe.iloc[0][3]))
 fig.update_layout(mapbox_style="stamen-terrain")
