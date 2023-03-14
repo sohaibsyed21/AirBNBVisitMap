@@ -26,7 +26,7 @@ dataframe = dataframe[dataframe["Price"] <= 100]
 # Display as integer
 dataframe["Airbnb Listing ID"] = dataframe["Airbnb Listing ID"].astype(int)
 # Round of values
-dataframe["Price"] = "£ " + dataframe["Price"].round(2).astype(str) # <--- CHANGE THIS POUND SYMBOL IF YOU CHOSE CURRENCY OTHER THAN POUND
+dataframe["Price"] = "$ CA " + dataframe["Price"].round(2).astype(str) # <--- CHANGE THIS POUND SYMBOL IF YOU CHOSE CURRENCY OTHER THAN POUND
 # Rename the number to a string
 dataframe["Location"] = dataframe["Location"].replace(
     {1.0: "To visit", 0.0: "Airbnb listing"}
@@ -48,7 +48,7 @@ fig = px.scatter_mapbox(
     hover_name="Price",
     hover_data=["Meters from chosen location", "Location"],
     labels={"color": "Locations"},
-    color_discrete_map= {"To visit":"blue", "Airbnb listing":"red"},
+    color_discrete_map= {"To visit":"blue", "Airbnb listing":"red"}, # actually have it so that red is listings and blue is our fav location
 )
 fig.update_geos(center=dict(lat=dataframe.iloc[0][2], lon=dataframe.iloc[0][3]))
 fig.update_layout(mapbox_style="stamen-terrain")
